@@ -14,6 +14,21 @@ Easily add new fields to the data without causing API errors, allowing for seaml
 ### API
 Currently supports REST methods GET, POST, PATCH, PUT, and DELETE.
 
+## Server
+### Python
+Start the api Server with 
+```
+python main.py
+```
+Depending on your config, the API-Server will create an agile_table in your database where you can save different types. 
+If you want to have fast columns for your types in the main table just add the COlumns you need in the config file. 
+See attached config file on how to add the columns. 
+
+If you need an own table for your type just add the table name to tables and add the types to the types under the table. 
+
+Always restart your API Server after config change for the Changes to take effect.
+
+
 ## Usage Examples
 ### GET
 Retrieves data similar to a SELECT query:
