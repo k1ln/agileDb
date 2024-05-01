@@ -1,5 +1,6 @@
 # AgileDb
-AgileDb is an API and database technique designed to make databases agile. It enables the storage of various data types in a JSON field within SQL databases, offering flexibility without strict schema requirements.
+AgileDb is an API and database technique designed to make databases agile. It enables the storage of various data types in a JSON field within SQL databases, offering flexibility without strict schema requirements. 
+Postgres, mariadb and MSSQL are supported.
 
 ## Features
 ### Dynamic Structure
