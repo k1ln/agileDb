@@ -11,8 +11,8 @@ Improve performance by adding columns and indexes to the configuration file, whi
 The API interface remains consistent regardless of changes in the underlying database structure.
 ### Error-Free Expansion 
 Easily add new fields to the data without causing API errors, allowing for seamless development and expansion.
-### Support for Multiple Languages
-Currently supports REST methods GET, POST, PATCH, PUT, and Delete, with plans to add support for Golang, JavaScript, TypeScript, and Lua.
+### API
+Currently supports REST methods GET, POST, PATCH, PUT, and DELETE.
 
 ## Usage Examples
 ### GET
