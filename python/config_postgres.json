@@ -1,0 +1,35 @@
+{
+    "database":{
+        "type":"postgres",
+        "host":"localhost",
+        "port":"5432",
+        "name":"agiledb",
+        "user":"postgres",
+        "password":""
+    },
+    "enableRawSQL":true,
+    "server":{
+        "port":"1338",
+        "showDbErrors":true
+    },
+    "types":{
+        "person":{
+            "columns":{
+                "name":"TEXT",
+                "age":"INTEGER"
+            },
+            "indices":{
+                "name":"",
+                "age":"",
+                "name,age":""
+            }
+        }
+    },
+    "tables":{
+        "person":{
+            "types":{
+                "person":""
+            }
+        }  
+    }
+}

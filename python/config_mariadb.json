@@ -1,0 +1,36 @@
+{
+    "database":{
+        "type":"mariaDb",
+        "host":"localhost",
+        "port":"3306",
+        "name":"agiledb",
+        "user":"root",
+        "password":""
+    },
+    "enableRawSQL":true,
+    "server":{
+        "port":"1338",
+        "showDbErrors":true
+    },
+    "types":{
+        "person":{
+            "columns":{
+                "name":"TEXT",
+                "age":"INTEGER",
+                "changed":"BOOL"
+            },
+            "indices":{
+                "name":"",
+                "age":"",
+                "name,age":""
+            }
+        }
+    },
+    "tables":{
+        "person":{
+            "types":{
+                "person":""
+            }
+        }  
+    }
+}
