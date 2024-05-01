@@ -66,7 +66,7 @@ class Database:
             obj = json[str]
         return obj
 
-    def parse_where(self, where_string, single_where, str_sql_tuple):
+    def parse_where(self, where_string, single_where, str_sql_tuple,agile_type):
         """
         Parses a WHERE clause for a SQL query.
 
@@ -100,19 +100,19 @@ class Database:
         value = ""
         operator = "="
         for att in list(single_where.keys()):
-            if att != "operator" and att != "where":
-                column = att
-                value = single_where[att]
-            elif att == "operator":
-                temp_operator = single_where[att]
+            if any("operator" in s for s in single_where.keys()):
+                temp_operator = single_where["operator"]
                 if temp_operator in self.operator_list:
                     operator = temp_operator
-            if self.keys_exists(self.config, "types", type, "columns", column): 
-                where_string += column + " " + operator + " %s "
-                str_sql_tuple += (value,)
-            else:
-                where_string += " data->>%s " + operator + " %s "
-                str_sql_tuple += (column, value)
+            if att != "operator" and att != "where":
+                column = att
+                value = single_where[att] 
+                if self.keys_exists(self.config, "types", agile_type, "columns", column): 
+                    where_string += column + " " + operator + " %s "
+                    str_sql_tuple += (value,)
+                else:
+                    where_string += " data->>%s " + operator + " %s "
+                    str_sql_tuple += (column, value)
         return where_string, str_sql_tuple
     
     def keys_exists(self, element, *keys):
@@ -172,7 +172,7 @@ class Database:
         return str_sql,str_sql_tuple
 
     def get(self,jsonObject):
-        type = jsonObject["type"]
+        agile_type = jsonObject["type"]
         columns = self.get_from_json("columns",jsonObject)
         where = self.get_from_json("where",jsonObject)
         strSQL = "SELECT "
@@ -184,18 +184,20 @@ class Database:
             for column in columns:
                 if first == False:strSQL += ","  
                 else:first = False
-                strSQL,strSQLTuple = self.add_column_to_string_sql(strSQL,strSQLTuple,type,column)
-        if self.keys_exists(self.config,"types",type,"table"):
-            strSQL += "FROM "+self.config["types"][type]["table"]+" "
+                strSQL,strSQLTuple = self.add_column_to_string_sql(strSQL,strSQLTuple,agile_type,column)
+        if self.keys_exists(self.config,"types",agile_type,"table"):
+            strSQL += "FROM "+self.config["types"][agile_type]["table"]+" "
         else:    
             strSQL += "FROM agile_main "
         strSQL += "WHERE agile_type=%s "
-        strSQLTuple += (type,)
+        strSQLTuple += (agile_type,)
         whereString = ""
+        print ("SQL")
+        print (strSQL)
         if where != None:
             for singleWhere in where:
                 whereString += " AND "    
-                whereString,strSQLTuple = self.parse_where(whereString,singleWhere,strSQLTuple)
+                whereString,strSQLTuple = self.parse_where(whereString,singleWhere,strSQLTuple,agile_type)
                 #Parse wjere object here
         strSQL += whereString
         print ("SQL")
