@@ -107,6 +107,7 @@ class AgilePostgres:
             sql = self.create_create_table_string(table)
             self.execute_and_commit(sql)
         
+    
     def initialize_postgres_types(self):
         """
         Initializes the types in the PostgreSQL database as per the configuration.
@@ -119,6 +120,9 @@ class AgilePostgres:
             type_table = self.get_type_table(db_type)
             db_type_object["table"] = type_table
             self.move_types_to_right_table(type_table,db_type)
+
+    def print_something(self):
+        print("Something")
 
     def create_get_column_name_string(self,change_table):
         """
