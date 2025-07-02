@@ -1,4 +1,5 @@
 # AgileDb
+
 AgileDb is an API and database technique designed to make databases agile. It enables the storage of various data types in a JSON field within SQL databases, offering flexibility without strict schema requirements. 
 Postgres, mariadb and MSSQL are supported.
 
@@ -15,6 +16,24 @@ Easily add new fields to the data without causing API errors, allowing for seaml
 Currently supports REST methods GET, POST, PATCH, PUT, and DELETE.
 
 ## Server
+
+### TypeScript (Recommended)
+Install dependencies:
+```bash
+npm install
+```
+
+Development mode:
+```bash
+npm run dev
+```
+
+Build and start:
+```bash
+npm run build
+npm start
+```
+
 ### Python
 Start the api Server with 
 ```
